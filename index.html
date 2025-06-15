@@ -1,1 +1,153 @@
 
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>학교의 비밀 - 방탈출 게임</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(ellipse at center, #000015 0%, #000000 100%);
+      color: #00ffea;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    .stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: url('https://www.transparenttextures.com/patterns/stardust.png');
+      opacity: 0.2;
+      animation: moveStars 60s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes moveStars {
+      from { background-position: 0 0; }
+      to { background-position: -10000px 5000px; }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      border: 2px solid #00ffea;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #00ffea;
+      margin-bottom: 20px;
+    }
+
+    .description {
+      font-size: 1.1em;
+      margin-bottom: 30px;
+      line-height: 1.6;
+      text-shadow: 0 0 10px #00ffea, 0 0 20px #00ffea;
+    }
+
+    .enter-button {
+      display: inline-block;
+      padding: 12px 30px;
+      font-size: 1.2em;
+      color: #000;
+      background: linear-gradient(45deg, #00ffea, #00bfff);
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 0 20px #00ffea, 0 0 40px #00bfff;
+      transition: all 0.3s ease;
+    }
+
+    .enter-button:hover {
+      background: linear-gradient(45deg, #00bfff, #00ffea);
+      box-shadow: 0 0 30px #00ffea, 0 0 60px #00bfff;
+    }
+
+    .magic-circle {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 150px;
+      height: 150px;
+      margin-left: -75px;
+      margin-top: -75px;
+      border: 4px solid #00ffea;
+      border-radius: 50%;
+      box-shadow: 0 0 30px #00ffea, 0 0 60px #00bfff;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: translate(-50%, -50%) rotate(0deg) scale(0.5);
+        opacity: 0.2;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translate(-50%, -50%) rotate(720deg) scale(2);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .description {
+        font-size: 1em;
+      }
+      .enter-button {
+        padding: 10px 25px;
+        font-size: 1em;
+      }
+      .magic-circle {
+        width: 100px;
+        height: 100px;
+        margin-left: -50px;
+        margin-top: -50px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="container">
+    <img src="images/index-main.png" alt="학교의 비밀 표지" />
+    <div class="description">
+      <p>특성화고 학과체험<br/>
+      그 곳에 다녀오기 전까지<br/>
+      나도 내가 평범한 중학생인 줄 알았다...</p>
+      <p>하지만 그날 이후로<br/>
+      나의 삶은 달라지게 되었다.</p>
+    </div>
+    <button class="enter-button" onclick="activateMagic()">입장하기</button>
+  </div>
+
+  <div class="magic-circle" id="magicCircle"></div>
+
+  <script>
+    function activateMagic() {
+      const circle = document.getElementById('magicCircle');
+      circle.style.opacity = '1';
+      circle.style.animation = 'spin 2s linear forwards';
+
+      setTimeout(() => {
+        window.location.href = 'mission1.html';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
