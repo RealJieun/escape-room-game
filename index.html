@@ -65,6 +65,16 @@
       text-shadow: 0 0 10px #00ffea, 0 0 20px #00ffea;
     }
 
+    .code-input {
+      padding: 10px 20px;
+      font-size: 1em;
+      border: 2px solid #00ffea;
+      border-radius: 8px;
+      background-color: #000;
+      color: #00ffea;
+      margin-bottom: 20px;
+    }
+
     .enter-button {
       display: inline-block;
       position: relative;
@@ -123,9 +133,10 @@
       나의 삶은 달라지게 되었다.</p>
     </div>
 
+    <input type="text" id="codeInput" class="code-input" placeholder="입장코드를 입력하세요" onfocus="this.placeholder=''" />
+
     <div style="position: relative; display: inline-block;">
-      <button class="enter-button" onclick="activateMagic()">입장하기</button>
-      <!-- SVG 마법진 문양 버튼 위 -->
+      <button class="enter-button" onclick="checkCode()">입장하기</button>
       <svg id="magicSvg" class="magic-svg" viewBox="0 0 200 200">
         <circle cx="100" cy="100" r="80" stroke="#00ffea" stroke-width="2" fill="none"/>
         <circle cx="100" cy="100" r="60" stroke="#00bfff" stroke-width="1.5" fill="none"/>
@@ -139,6 +150,18 @@
   </div>
 
   <script>
+    function checkCode() {
+      const inputElement = document.getElementById('codeInput');
+      const input = inputElement.value.trim();
+      if (input === 'STS1004') {
+        activateMagic();
+      } else {
+        alert('입장코드가 맞지 않습니다.');
+        inputElement.value = '';
+        inputElement.placeholder = '입장코드를 입력하세요';
+      }
+    }
+
     function activateMagic() {
       const svg = document.getElementById('magicSvg');
       svg.style.opacity = '1';
